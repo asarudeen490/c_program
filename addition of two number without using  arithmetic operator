@@ -1,0 +1,10 @@
+#include<stdio.h>
+int main(){
+    int a,b;
+    printf("enter the value:");
+    scanf("%d%d",&a,&b);
+    int s=a^b;
+    int c=((a&b)<<1);
+    int f=(s^c);
+    printf("%d",f);
+}

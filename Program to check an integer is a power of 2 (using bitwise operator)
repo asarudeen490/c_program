@@ -1,0 +1,14 @@
+#include<stdio.h>
+int main(){
+    int a,n;
+    printf("enter the value\n");
+    scanf("%d",&a);
+    n=a-1;
+    int c=a&n;
+    if(c==0){
+        printf("it is the power of 2");
+    }
+    else{
+        printf("it is not the power of 2");
+    }
+}

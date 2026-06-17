@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+int main() {
+    int a, b;
+    printf("enter the dividend:");
+    scanf("%d", &a);
+    printf("enter the divisor:");
+    scanf("%d", &b);
+
+    // Safety check for division by zero
+    if (b == 0) {
+        printf("Error: Division by zero\n");
+        return 1;
+    }
+
+    int temp_divisor = b;
+    int count = 0;
+
+    // 1. Shift up safely: Only shift if doubling won't overshoot 'a'
+    while ((temp_divisor << 1) <= a && (temp_divisor << 1) > 0) {
+        temp_divisor = (temp_divisor << 1);
+        count = count + 1; // Count tracks how many times we shifted left
+    }
+
+    int quotient = 0;
+    int remainder = a;
+
+    // 2. Step downward: Walk backward using the shifts we found
+    for (int i = count; i >= 0; i--) {
+        // If the scaled divisor fits into our remaining pool
+        if ((b << i) <= remainder) {
+            remainder = remainder - (b << i); // Subtract the chunk
+            quotient = quotient + (1 << i);    // Add the binary weight to quotient
+        }
+    }
+
+    printf("the remainder is:%d\n", remainder);
+    printf("the quotient is:%d\n", quotient);
+
+    return 0;
+}

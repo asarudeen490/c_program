@@ -1,0 +1,22 @@
+// Online C compiler to run C program online
+#include <stdio.h>
+
+int main() {
+    int n;
+    printf("Enter a number ending with 3: ");
+    if (scanf("%d", &n) != 1) return 1;
+
+    int remainder = 0;
+    int initial=0;
+    int length = 0;
+
+    // Loop builds the remainder digit by digit
+    do {
+        remainder = (remainder * 10 + 1) % n;
+        length++;
+    } while (remainder != 0);
+
+    printf("The shortest length of all 1s divisible by %d is: %d\n", n, length);
+    
+    return 0;
+}
